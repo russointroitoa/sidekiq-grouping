@@ -7,7 +7,7 @@ module Sidekiq
     class Redis
       include RedisDispatcher
 
-      BREAKING_VERSION = "6.2.0"
+      BREAK_VERSION = "6.2.0"
 
       PLUCK_SCRIPT_GTE_6_2_0 = <<-SCRIPT
         local pluck_values = redis.call('lpop', KEYS[1], ARGV[1]) or {}
@@ -125,7 +125,7 @@ module Sidekiq
       # @return [<Type>] <description>
       #
       def pluck_script
-        if Gem::Version.new(server_version) >= Gem::Version.new(BREAKING_VERSION)
+        if Gem::Version.new(server_version) >= Gem::Version.new(BREAK_VERSION)
           PLUCK_SCRIPT_GTE_6_2_0
         else
           PLUCK_SCRIPT_LT_6_2_0
