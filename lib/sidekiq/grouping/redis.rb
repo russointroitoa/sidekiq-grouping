@@ -123,7 +123,7 @@ module Sidekiq
       # @return [<Type>] <description>
       #
       def pluck_script
-        if server_version >= "6.2.0"
+        if Gem::Version.new(server_version) >= Gem::Version.new("6.2.0")
           PLUCK_SCRIPT_GTE_6_2_0
         else
           PLUCK_SCRIPT_LT_6_2_0
